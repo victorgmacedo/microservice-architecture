@@ -1,10 +1,10 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-	id("org.springframework.boot") version "2.5.6"
+	id("org.springframework.boot") version "2.6.1"
 	id("io.spring.dependency-management") version "1.0.11.RELEASE"
-	kotlin("jvm") version "1.5.31"
-	kotlin("plugin.spring") version "1.5.31"
+	kotlin("jvm") version "1.6.0"
+	kotlin("plugin.spring") version "1.6.0"
 }
 
 group = "br.com.vgm"
@@ -15,19 +15,21 @@ repositories {
 	mavenCentral()
 }
 
-extra["springCloudVersion"] = "2020.0.4"
+extra["springCloudVersion"] = "2021.0.0"
 
 dependencies {
+	annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
 	implementation("org.springframework.boot:spring-boot-starter-actuator")
-	implementation("org.springframework.boot:spring-boot-starter-web")
-	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-	implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client")
-	implementation("mysql:mysql-connector-java")
-	implementation("org.flywaydb:flyway-core")
-	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-//	implementation("org.springframework.cloud:spring-cloud-starter-config")
+	implementation("org.springframework.cloud:spring-cloud-starter-config")
+	implementation("org.springframework.cloud:spring-cloud-starter-gateway")
+
+//	implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client")
+	implementation("io.jsonwebtoken:jjwt:0.9.1")
+	// https://mvnrepository.com/artifact/javax.xml.bind/jaxb-api
+	implementation("javax.xml.bind:jaxb-api:2.3.1")
+	compileOnly ("org.projectlombok:lombok")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 
